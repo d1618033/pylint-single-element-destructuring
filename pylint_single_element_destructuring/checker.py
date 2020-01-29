@@ -7,15 +7,25 @@ class SingleElementDestructuring(BaseChecker):
 
     name = 'single-element-destructuring-checker'
 
+    SINGLE_ELEMENT_DESTRUCTURING_MSG = 'single-element-destructuring'
     msgs = {
-        'C0001': 'Single element destructuring detected',
+        'W0001': (
+            'Uses single element destructuring',
+            SINGLE_ELEMENT_DESTRUCTURING_MSG,
+            'Single element destructuring should not be used.'
+        ),
     }
     options = ()
 
     priority = -1
 
-    def visit_importfrom(self, node):
-        pass  # to be implemented
+    def visit_assign(self, node):
+        targets = node.targets
+        if len(targets) != 1:
+            return
+        target = targets[0]
+        if len(list(target.get_children())) == 1:
+            self.add_message(self.SINGLE_ELEMENT_DESTRUCTURING_MSG, node=node)
 
 
 def register(linter):
