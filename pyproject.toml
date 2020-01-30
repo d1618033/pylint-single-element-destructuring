@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pylint-single-element-destructuring"
-version = "0.1.0"
+version = "0.1.1"
 description = ""
 authors = ["d1618033"]
 

@@ -25,6 +25,16 @@ class TestUniqueReturnChecker(pylint.testutils.CheckerTestCase):
     def test_no_error(self):
         self._assert_no_error("a, b = [1, 2]")
 
+    def test_no_destructuring(self):
+        self._assert_no_error("a = [1, 2]")
+
+    def test_no_destructuring_class(self):
+        self._assert_no_error("""
+            class A:
+                def __init__(self):
+                    self._x = 1 #@
+        """)
+
     def test_error_lhs_tuple_destructuring(self):
         self._assert_error("(a,) = [1]")
 
