@@ -24,8 +24,9 @@ class SingleElementDestructuring(BaseChecker):
         if len(targets) != 1:
             return
         target = targets[0]
-        if hasattr(target, "pytype") and target.pytype() in ["builtins.tuple", "builtins.list"] and len(list(target.get_children())) == 1:
-            self.add_message(self.SINGLE_ELEMENT_DESTRUCTURING_MSG, node=node)
+        if hasattr(target, "pytype") and target.pytype() in ["builtins.tuple", "builtins.list"]:
+            if len(list(target.get_children())) == 1:
+                self.add_message(self.SINGLE_ELEMENT_DESTRUCTURING_MSG, node=node)
 
 
 def register(linter):
