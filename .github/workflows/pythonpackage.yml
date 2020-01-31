@@ -21,6 +21,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install poetry
         poetry install
+    - name: Black
+        run: |
+          poetry run black --check .
     - name: Lint with pylint
       run: |
         poetry run pylint pylint_single_element_destructuring

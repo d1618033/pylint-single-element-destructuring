@@ -29,8 +29,7 @@ class TestUniqueReturnChecker(pylint.testutils.CheckerTestCase):
         node = astroid.extract_node(code)
         with self.assertAddsMessages(
             pylint.testutils.Message(
-                msg_id=self.CHECKER_CLASS.SINGLE_ELEMENT_DESTRUCTURING_MSG,
-                node=node,
+                msg_id=self.CHECKER_CLASS.SINGLE_ELEMENT_DESTRUCTURING_MSG, node=node,
             ),
         ):
             self.checker.visit_assign(node)
@@ -42,11 +41,13 @@ class TestUniqueReturnChecker(pylint.testutils.CheckerTestCase):
         self._assert_no_error("a = [1, 2]")
 
     def test_no_destructuring_class(self):
-        self._assert_no_error("""
+        self._assert_no_error(
+            """
             class A:
                 def __init__(self):
                     self._x = 1 #@
-        """)
+        """
+        )
 
     def test_error_lhs_tuple_destructuring(self):
         self._assert_error("(a,) = [1]")

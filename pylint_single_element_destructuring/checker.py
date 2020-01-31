@@ -5,23 +5,25 @@ from pylint.checkers import BaseChecker
 class SingleElementDestructuring(BaseChecker):
     __implements__ = IAstroidChecker
 
-    name = 'single-element-destructuring-checker'
+    name = "single-element-destructuring-checker"
 
-    SINGLE_ELEMENT_DESTRUCTURING_MSG = 'single-element-destructuring'
+    SINGLE_ELEMENT_DESTRUCTURING_MSG = "single-element-destructuring"
     msgs = {
-        'W0001': (
-            'Uses single element destructuring',
+        "W0001": (
+            "Uses single element destructuring",
             SINGLE_ELEMENT_DESTRUCTURING_MSG,
-            'Single element destructuring should not be used.'
+            "Single element destructuring should not be used.",
         ),
     }
     options = (
         (
-            'ignore-single-element-list-destructuring',
+            "ignore-single-element-list-destructuring",
             {
-                'default': False, 'type': 'yn', 'metavar': '<y_or_n>',
-                'help': 'Allow destructuring using lists, e.g [x] = [10]',
-            }
+                "default": False,
+                "type": "yn",
+                "metavar": "<y_or_n>",
+                "help": "Allow destructuring using lists, e.g [x] = [10]",
+            },
         ),
     )
 
