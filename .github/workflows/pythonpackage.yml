@@ -22,7 +22,7 @@ jobs:
         pip install poetry
         poetry install
     - name: Black
-        run: |
+      run: |
           poetry run black --check .
     - name: Lint with pylint
       run: |
