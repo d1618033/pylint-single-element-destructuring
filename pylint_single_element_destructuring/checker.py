@@ -15,7 +15,15 @@ class SingleElementDestructuring(BaseChecker):
             'Single element destructuring should not be used.'
         ),
     }
-    options = ()
+    options = (
+        (
+            'ignore-single-element-list-destructuring',
+            {
+                'default': False, 'type': 'yn', 'metavar': '<y_or_n>',
+                'help': 'Allow destructuring using lists, e.g [x] = [10]',
+            }
+        ),
+    )
 
     priority = -1
 
@@ -24,7 +32,10 @@ class SingleElementDestructuring(BaseChecker):
         if len(targets) != 1:
             return
         target = targets[0]
-        if hasattr(target, "pytype") and target.pytype() in ["builtins.tuple", "builtins.list"]:
+        not_allowed_lhs = ["builtins.tuple"]
+        if not self.config.ignore_single_element_list_destructuring:
+            not_allowed_lhs.append("builtins.list")
+        if hasattr(target, "pytype") and target.pytype() in not_allowed_lhs:
             if len(list(target.get_children())) == 1:
                 self.add_message(self.SINGLE_ELEMENT_DESTRUCTURING_MSG, node=node)
 

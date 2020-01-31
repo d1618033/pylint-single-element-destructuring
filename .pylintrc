@@ -1,2 +1,6 @@
 [MESSAGES CONTROL]
 disable=missing-module-docstring,missing-class-docstring,missing-function-docstring
+
+[MASTER]
+load-plugins=
+    pylint_single_element_destructuring
