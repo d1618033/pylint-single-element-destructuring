@@ -18,7 +18,7 @@ load-plugins=
 ```
 
 
-###Options
+## Options
 
 Some people find destructuring using lists to be more tolerable than destructuring
 using tuples. To allow destructuring using lists simply add to your .pylintrc file:
