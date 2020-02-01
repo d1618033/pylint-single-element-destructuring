@@ -8,6 +8,7 @@ authors = ["d1618033"]
 python = "^3.6"
 astroid = "^2.3.3"
 pylint = "^2.4.4"
+pytest-cov = "^2.8.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.3.5"

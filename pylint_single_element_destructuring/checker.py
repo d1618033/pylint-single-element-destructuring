@@ -32,16 +32,13 @@ class SingleElementDestructuring(BaseChecker):
     def visit_assign(self, node):
         if not hasattr(node, "targets"):
             return
-        targets = node.targets
-        if len(targets) != 1:
-            return
-        target = targets[0]
         not_allowed_lhs = ["builtins.tuple"]
         if not self.config.ignore_single_element_list_destructuring:
             not_allowed_lhs.append("builtins.list")
-        if hasattr(target, "pytype") and target.pytype() in not_allowed_lhs:
-            if len(list(target.get_children())) == 1:
-                self.add_message(self.SINGLE_ELEMENT_DESTRUCTURING_MSG, node=node)
+        for target in node.targets:
+            if hasattr(target, "pytype") and target.pytype() in not_allowed_lhs:
+                if len(list(target.get_children())) == 1:
+                    self.add_message(self.SINGLE_ELEMENT_DESTRUCTURING_MSG, node=node)
 
 
 def register(linter):
