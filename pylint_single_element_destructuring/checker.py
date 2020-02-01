@@ -30,6 +30,8 @@ class SingleElementDestructuring(BaseChecker):
     priority = -1
 
     def visit_assign(self, node):
+        if not hasattr(node, "targets"):
+            return
         targets = node.targets
         if len(targets) != 1:
             return

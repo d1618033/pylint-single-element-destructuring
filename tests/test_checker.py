@@ -37,6 +37,9 @@ class TestUniqueReturnChecker(pylint.testutils.CheckerTestCase):
     def test_no_error(self):
         self._assert_no_error("a, b = [1, 2]")
 
+    def test_annotation_assignment_no_error(self):
+        self._assert_no_error("a: int = 1")
+
     def test_no_destructuring(self):
         self._assert_no_error("a = [1, 2]")
 
