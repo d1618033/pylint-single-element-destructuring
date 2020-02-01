@@ -40,16 +40,16 @@ def test_examples_error(run_pylint):
     actual = run_pylint([os.path.join(EXAMPLES_FOLDER, "errors.py")])
     message = "Uses single element destructuring (single-element-destructuring)"
     file = "examples/errors.py"
-    errr = "W0001"
+    error = "W0001"
     expected = [
-        PylintError(file, 12, 4, errr, message),
-        PylintError(file, 14, 4, errr, message),
-        PylintError(file, 16, 4, errr, message),
-        PylintError(file, 26, 8, errr, message),
-        PylintError(file, 27, 8, errr, message),
-        PylintError(file, 28, 8, errr, message),
-        PylintError(file, 37, 8, errr, message),
-        PylintError(file, 43, 8, errr, message),
+        PylintError(file, 12, 4, error, message),
+        PylintError(file, 14, 4, error, message),
+        PylintError(file, 16, 4, error, message),
+        PylintError(file, 26, 8, error, message),
+        PylintError(file, 27, 8, error, message),
+        PylintError(file, 28, 8, error, message),
+        PylintError(file, 37, 8, error, message),
+        PylintError(file, 43, 8, error, message),
     ]
     assert actual == expected
 
